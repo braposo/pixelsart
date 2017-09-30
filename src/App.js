@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { H1, Label, Main, Pre } from "./UI";
+import { H1, Label, Main, Pre, Input } from "./UI";
 
 const processData = data => {
   return {
@@ -13,7 +13,7 @@ const processData = data => {
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", data: null };
+    this.state = { input: "", data: null, error: null };
   }
 
   handleChange = ev => {
@@ -24,12 +24,26 @@ class App extends Component {
     this.setState({ data });
   };
 
+  handleError = error => {
+    this.setState({ error });
+  };
+
+  clearResults = () => {
+    this.setState({
+      data: null,
+      error: null
+    });
+  };
+
   handleSubmit = ev => {
     ev.preventDefault();
+    this.clearResults();
+
     fetch(`http://api.pixels.camp/users/${this.state.input}`)
       .then(resp => resp.json())
       .then(processData)
-      .then(this.storeData);
+      .then(this.storeData)
+      .catch(this.handleError);
   };
 
   render() {
@@ -38,7 +52,7 @@ class App extends Component {
         <H1>PixelsArt</H1>
         <form onSubmit={this.handleSubmit}>
           <Label htmlFor="pixelsName">Username</Label>
-          <input
+          <Input
             id="pixelsName"
             type="text"
             onChange={this.handleChange}
@@ -48,6 +62,7 @@ class App extends Component {
         {this.state.data && (
           <Pre>{JSON.stringify(this.state.data, null, 2)}</Pre>
         )}
+        {this.state.error && <small>User not found</small>}
       </Main>
     );
   }
