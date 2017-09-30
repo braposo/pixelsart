@@ -7,7 +7,7 @@ const processData = data => {
   const favs = data.favs.length;
   const badges = data.badges["2017"].length;
   const bio = data.bio.split(" ").length;
-  const surface = 1000;
+  const surface = 1480;
   const total = favs + badges + bio;
 
   const calcArea = val => Math.round(val * surface / total);
@@ -17,7 +17,8 @@ const processData = data => {
     badges: [badges, calcArea(badges)],
     bio: [bio, calcArea(bio)],
     wallet: data.wallet,
-    name: data.name
+    name: data.name,
+    avatar: data.avatar_url
   };
 };
 
@@ -32,6 +33,10 @@ class App extends Component {
   };
 
   storeData = data => {
+    fetch(`http://46.101.143.212/api/${data.wallet}`)
+      .then(resp => resp.json())
+      .then(stats => console.log(stats));
+
     this.setState({ data });
   };
 

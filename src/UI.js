@@ -48,7 +48,7 @@ export const Button = glamorous.button({
   background: colours.yellow
 });
 export const Icon = glamorous.img({
-  width: 48,
-  height: 48
+  width: 128
 });
 export const Span = glamorous.span();
+export const Div = glamorous.div();
