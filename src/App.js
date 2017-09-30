@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { H1, Label, Main, Pre } from "./UI";
 
 const processData = data => {
   return {
@@ -33,18 +34,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <Main>
+        <H1>PixelsArt</H1>
         <form onSubmit={this.handleSubmit}>
+          <Label htmlFor="pixelsName">Username</Label>
           <input
+            id="pixelsName"
             type="text"
             onChange={this.handleChange}
             value={this.state.input}
           />
         </form>
         {this.state.data && (
-          <pre>{JSON.stringify(this.state.data, null, 2)}</pre>
+          <Pre>{JSON.stringify(this.state.data, null, 2)}</Pre>
         )}
-      </div>
+      </Main>
     );
   }
 }
