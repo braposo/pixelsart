@@ -2,7 +2,7 @@
   "name": "pixelsart",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://braposo.github.io/pixelsart",
+  "homepage": "https://pixelscamp.art",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "glamor": "^2.20.40",
