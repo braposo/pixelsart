@@ -48,7 +48,14 @@ const Results = ({ data, onResetClick }) => {
       <Div css={{ position: "absolute", top: 0, left: 0 }}>
         <Icon src={Logo} alt="Pixels Camp logo" />
       </Div>
-      <Div css={{ position: "absolute", top: 0, right: 0 }}>
+      <Div
+        css={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          textTransform: "uppercase"
+        }}
+      >
         {data.name}{" "}
         <Icon
           src={data.avatar}
