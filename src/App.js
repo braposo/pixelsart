@@ -33,7 +33,7 @@ class App extends Component {
   };
 
   storeData = data => {
-    fetch(`http://46.101.147.10/api/${data.wallet}`)
+    fetch(`https://explorer.pixelscamp.art/api/${data.wallet}`)
       .then(resp => resp.json())
       .then(stats => console.log(stats));
 
@@ -55,7 +55,7 @@ class App extends Component {
     ev.preventDefault();
     this.clearResults();
 
-    fetch(`http://api.pixels.camp/users/${this.state.input}`)
+    fetch(`https://api.pixels.camp/users/${this.state.input}`)
       .then(resp => resp.json())
       .then(processData)
       .then(this.storeData)
