@@ -1,5 +1,5 @@
 import React from "react";
-import { Pre, Button, Icon, Span, colours } from "./UI";
+import { Button, colours } from "./UI";
 import ChatIcon from "./assets/chat";
 import TrophyIcon from "./assets/trophy";
 import HeartIcon from "./assets/heart";
