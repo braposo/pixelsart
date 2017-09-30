@@ -1,7 +1,13 @@
 import React, { Component } from "react";
-import { Main } from "./UI";
+import { Main, Div } from "./UI";
 import Form from "./Form";
 import Results from "./Results";
+
+const processStats = stats => {
+  return {
+    transactions: stats.numTransactions
+  };
+};
 
 const processData = data => {
   const favs = data.favs.length;
@@ -12,20 +18,37 @@ const processData = data => {
 
   const calcArea = val => Math.round(val * surface / total);
 
-  return {
-    favs: [favs, calcArea(favs)],
-    badges: [badges, calcArea(badges)],
-    bio: [bio, calcArea(bio)],
-    wallet: data.wallet,
-    name: data.name,
-    avatar: data.avatar_url
-  };
+  return fetch(`https://explore.pixelscamp.art/api/${data.wallet}`)
+    .then(resp => resp.json())
+    .then(stats => ({
+      favs: [favs, calcArea(favs)],
+      badges: [badges, calcArea(badges)],
+      bio: [bio, calcArea(bio)],
+      wallet: data.wallet,
+      name: data.name,
+      avatar: data.avatar_url,
+      ...processStats(stats)
+    }))
+    .catch(this.handleError);
 };
+
+const Printing = () => (
+  <Div
+    css={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100vh"
+    }}
+  >
+    Generating your poster...
+  </Div>
+);
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", data: null, error: null };
+    this.state = { input: "", data: null, error: null, printing: false };
   }
 
   handleChange = ev => {
@@ -33,15 +56,11 @@ class App extends Component {
   };
 
   storeData = data => {
-    fetch(`https://explorer.pixelscamp.art/api/${data.wallet}`)
-      .then(resp => resp.json())
-      .then(stats => console.log(stats));
-
-    this.setState({ data });
+    this.setState({ data, printing: false });
   };
 
   handleError = error => {
-    this.setState({ error });
+    this.setState({ error, printing: false });
   };
 
   clearResults = () => {
@@ -54,6 +73,7 @@ class App extends Component {
   handleSubmit = ev => {
     ev.preventDefault();
     this.clearResults();
+    this.setState({ printing: true });
 
     fetch(`https://api.pixels.camp/users/${this.state.input}`)
       .then(resp => resp.json())
@@ -65,11 +85,14 @@ class App extends Component {
   render() {
     return (
       <Main>
-        {this.state.data == null ? (
+        {this.state.printing === true ? (
+          <Printing />
+        ) : this.state.data == null ? (
           <Form
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
             error={this.state.error}
+            printing={this.state.printing}
           />
         ) : (
           <Results data={this.state.data} onResetClick={this.clearResults} />
