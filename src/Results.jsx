@@ -1,9 +1,10 @@
 import React from "react";
-import { colours, Div, scale, Icon } from "./UI";
+import { colours, Div, scale, Icon, A } from "./UI";
 import ChatIcon from "./assets/chat";
 import TrophyIcon from "./assets/trophy";
 import HeartIcon from "./assets/heart";
 import WifiIcon from "./assets/wifi";
+import SpeakerIcon from "./assets/speaker";
 import Logo from "./assets/logo.svg";
 
 // function shuffleArray(array) {
@@ -18,13 +19,17 @@ const Fav = <HeartIcon size={16} color={colours.red} />;
 const Badges = <TrophyIcon size={16} color={colours.yellow} />;
 const Bio = <ChatIcon size={16} color={colours.blue} />;
 const Transactions = <WifiIcon size={16} color={colours.orange} />;
+const Referrals = <SpeakerIcon size={16} color={colours.green} />;
 
 const getIconComponent = (icon, i) => {
   const components = {
     favs: React.cloneElement(Fav, { key: `fav-${i}` }),
     badges: React.cloneElement(Badges, { key: `badges-${i}` }),
     bio: React.cloneElement(Bio, { key: `bio-${i}` }),
-    transactions: React.cloneElement(Transactions, { key: `transactions-${i}` })
+    transactions: React.cloneElement(Transactions, {
+      key: `transactions-${i}`
+    }),
+    referrals: React.cloneElement(Referrals, { key: `referrals-${i}` })
   };
 
   return components[icon];
@@ -35,11 +40,13 @@ const Results = ({ data, onResetClick }) => {
   const printBadges = Array(data.badges[1]).fill("badges");
   const printBio = Array(data.bio[1]).fill("bio");
   const printTransactions = Array(data.transactions[1]).fill("transactions");
+  const printReferrals = Array(data.referrals[1]).fill("referrals");
   const printChars = [
     ...printFavs,
     ...printBadges,
     ...printBio,
-    ...printTransactions
+    ...printTransactions,
+    ...printReferrals
   ];
   printChars.splice(1480);
 
@@ -71,8 +78,10 @@ const Results = ({ data, onResetClick }) => {
       <Div css={{ maxWidth: 600, margin: "0 auto", paddingTop: 150 }}>
         {printChars.map((char, i) => getIconComponent(char, i))}
       </Div>
-      <Div css={{ marginTop: 90 }}>pixelsart</Div>
-      <Div css={{ fontSize: 10 }}>2017</Div>
+      <A href="https://wallet.pixels.camp/?to=0x944b8423331d5fb9713095e6a17390c2c6c4a1a7#send-transaction">
+        <Div css={{ marginTop: 90 }}>pixelsart</Div>
+        <Div css={{ fontSize: 10 }}>2017</Div>
+      </A>
     </Div>
   );
 };

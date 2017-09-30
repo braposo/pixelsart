@@ -7,9 +7,10 @@ const processStats = (stats, data) => {
   const favs = data.favs.length;
   const badges = data.badges["2017"].length;
   const bio = data.bio.split(" ").length;
+  const referrals = data.referrals.length;
   const transactions = stats.numTransactions;
   const surface = 1480;
-  const total = favs + badges + bio + transactions;
+  const total = favs + badges + bio + transactions + referrals;
 
   const calcArea = val => Math.round(val * surface / total);
 
@@ -17,6 +18,7 @@ const processStats = (stats, data) => {
     favs: [favs, calcArea(favs)],
     badges: [badges, calcArea(badges)],
     bio: [bio, calcArea(bio)],
+    referrals: [referrals, calcArea(referrals)],
     transactions: [transactions, calcArea(transactions)]
   };
 };

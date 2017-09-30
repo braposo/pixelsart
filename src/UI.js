@@ -55,3 +55,4 @@ export const Icon = glamorous.img({
 });
 export const Span = glamorous.span();
 export const Div = glamorous.div();
+export const A = glamorous.a({ color: "black", textDecoration: "none" });
