@@ -3,6 +3,7 @@ import { colours, Div, scale, Icon } from "./UI";
 import ChatIcon from "./assets/chat";
 import TrophyIcon from "./assets/trophy";
 import HeartIcon from "./assets/heart";
+import WifiIcon from "./assets/wifi";
 import Logo from "./assets/logo.svg";
 
 // function shuffleArray(array) {
@@ -16,12 +17,14 @@ import Logo from "./assets/logo.svg";
 const Fav = <HeartIcon size={16} color={colours.red} />;
 const Badges = <TrophyIcon size={16} color={colours.yellow} />;
 const Bio = <ChatIcon size={16} color={colours.blue} />;
+const Transactions = <WifiIcon size={16} color={colours.orange} />;
 
 const getIconComponent = (icon, i) => {
   const components = {
     favs: React.cloneElement(Fav, { key: `fav-${i}` }),
     badges: React.cloneElement(Badges, { key: `badges-${i}` }),
-    bio: React.cloneElement(Bio, { key: `bio-${i}` })
+    bio: React.cloneElement(Bio, { key: `bio-${i}` }),
+    transactions: React.cloneElement(Transactions, { key: `transactions-${i}` })
   };
 
   return components[icon];
@@ -31,7 +34,13 @@ const Results = ({ data, onResetClick }) => {
   const printFavs = Array(data.favs[1]).fill("favs");
   const printBadges = Array(data.badges[1]).fill("badges");
   const printBio = Array(data.bio[1]).fill("bio");
-  const printChars = [...printFavs, ...printBadges, ...printBio];
+  const printTransactions = Array(data.transactions[1]).fill("transactions");
+  const printChars = [
+    ...printFavs,
+    ...printBadges,
+    ...printBio,
+    ...printTransactions
+  ];
   printChars.splice(1480);
 
   return (

@@ -3,31 +3,32 @@ import { Main, Div } from "./UI";
 import Form from "./Form";
 import Results from "./Results";
 
-const processStats = stats => {
+const processStats = (stats, data) => {
+  const favs = data.favs.length;
+  const badges = data.badges["2017"].length;
+  const bio = data.bio.split(" ").length;
+  const transactions = stats.numTransactions;
+  const surface = 1480;
+  const total = favs + badges + bio + transactions;
+
+  const calcArea = val => Math.round(val * surface / total);
+
   return {
-    transactions: stats.numTransactions
+    favs: [favs, calcArea(favs)],
+    badges: [badges, calcArea(badges)],
+    bio: [bio, calcArea(bio)],
+    transactions: [transactions, calcArea(transactions)]
   };
 };
 
 const processData = data => {
-  const favs = data.favs.length;
-  const badges = data.badges["2017"].length;
-  const bio = data.bio.split(" ").length;
-  const surface = 1480;
-  const total = favs + badges + bio;
-
-  const calcArea = val => Math.round(val * surface / total);
-
   return fetch(`https://explore.pixelscamp.art/api/${data.wallet}`)
     .then(resp => resp.json())
     .then(stats => ({
-      favs: [favs, calcArea(favs)],
-      badges: [badges, calcArea(badges)],
-      bio: [bio, calcArea(bio)],
       wallet: data.wallet,
       name: data.name,
       avatar: data.avatar_url,
-      ...processStats(stats)
+      ...processStats(stats, data)
     }))
     .catch(this.handleError);
 };
