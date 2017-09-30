@@ -49,7 +49,25 @@ const Printing = () => (
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { input: "", data: null, error: null, printing: false };
+    this.state = {
+      input: "",
+      data: null,
+      error: null,
+      printing: false,
+      path: null
+    };
+  }
+
+  componentDidMount() {
+    const path = window.location.pathname.substr(1);
+    if (path.length > 0) {
+      this.setState({ printing: true, path });
+      fetch(`https://api.pixels.camp/users/${path}`)
+        .then(resp => resp.json())
+        .then(processData)
+        .then(this.storeData)
+        .catch(this.handleError);
+    }
   }
 
   handleChange = ev => {
@@ -75,6 +93,7 @@ class App extends Component {
     ev.preventDefault();
     this.clearResults();
     this.setState({ printing: true });
+    window.history.pushState(null, null, this.state.input);
 
     fetch(`https://api.pixels.camp/users/${this.state.input}`)
       .then(resp => resp.json())
@@ -86,17 +105,17 @@ class App extends Component {
   render() {
     return (
       <Main>
-        {this.state.printing === true ? (
+        {this.state.data != null ? (
+          <Results data={this.state.data} onResetClick={this.clearResults} />
+        ) : this.state.printing === true ? (
           <Printing />
-        ) : this.state.data == null ? (
+        ) : (
           <Form
             onChange={this.handleChange}
             onSubmit={this.handleSubmit}
             error={this.state.error}
             printing={this.state.printing}
           />
-        ) : (
-          <Results data={this.state.data} onResetClick={this.clearResults} />
         )}
       </Main>
     );
