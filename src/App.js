@@ -33,7 +33,7 @@ class App extends Component {
   };
 
   storeData = data => {
-    fetch(`http://46.101.143.212/api/${data.wallet}`)
+    fetch(`http://46.101.147.10/api/${data.wallet}`)
       .then(resp => resp.json())
       .then(stats => console.log(stats));
 

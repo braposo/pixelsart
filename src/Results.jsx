@@ -1,17 +1,17 @@
 import React from "react";
-import { Button, colours, Div, scale, Icon } from "./UI";
+import { colours, Div, scale, Icon } from "./UI";
 import ChatIcon from "./assets/chat";
 import TrophyIcon from "./assets/trophy";
 import HeartIcon from "./assets/heart";
 import Logo from "./assets/logo.svg";
 
-function shuffleArray(array) {
-  for (var i = array.length - 1; i > 0; i--) {
-    var j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
-}
+// function shuffleArray(array) {
+//   for (var i = array.length - 1; i > 0; i--) {
+//     var j = Math.floor(Math.random() * (i + 1));
+//     [array[i], array[j]] = [array[j], array[i]];
+//   }
+//   return array;
+// }
 
 const Fav = <HeartIcon size={16} color={colours.red} />;
 const Badges = <TrophyIcon size={16} color={colours.yellow} />;

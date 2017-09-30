@@ -1,5 +1,5 @@
 import React from "react";
-import { H1, Label, Input, Button, Div, scale } from "./UI";
+import { H1, Label, Input, Button, Div, scale, colours } from "./UI";
 
 const Form = ({ onSubmit, onChange, error, input }) => {
   return (
@@ -24,7 +24,11 @@ const Form = ({ onSubmit, onChange, error, input }) => {
           <div>
             <Button
               type="submit"
-              css={{ minWidth: 100, marginBottom: scale[4] }}
+              css={{
+                minWidth: 100,
+                marginBottom: scale[4],
+                color: colours.red
+              }}
             >
               Go!
             </Button>

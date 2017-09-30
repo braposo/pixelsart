@@ -45,7 +45,10 @@ export const Input = glamorous.input({
 export const Button = glamorous.button({
   border: "none",
   padding: scale[1],
-  background: colours.yellow
+  background: colours.yellow,
+  fontFamily: `"Pixels", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`,
+  fontSize: 16
 });
 export const Icon = glamorous.img({
   width: 128
