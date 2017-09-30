@@ -11,5 +11,14 @@ export const Main = glamorous.div({
   textAlign: "center"
 });
 export const Pre = glamorous.pre({
-  textAlign: "left"
+  textAlign: "left",
+  backgroundColor: "#eee",
+  padding: scale[1],
+  display: "inline-block",
+  margin: "0 auto"
+});
+export const Input = glamorous.input({
+  border: "1px solid #333",
+  padding: scale[0],
+  marginBottom: scale[2]
 });
