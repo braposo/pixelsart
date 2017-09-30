@@ -1,12 +1,23 @@
 import React, { Component } from "react";
-import { H1, Label, Main, Pre, Input } from "./UI";
+import { Main } from "./UI";
+import Form from "./Form";
+import Results from "./Results";
 
 const processData = data => {
+  const favs = data.favs.length;
+  const badges = data.badges["2017"].length;
+  const bio = data.bio.split(" ").length;
+  const surface = 1000;
+  const total = favs + badges + bio;
+
+  const calcArea = val => Math.round(val * surface / total);
+
   return {
-    favs: data.favs.length,
-    badges: data.badges["2017"].length,
-    bio: data.bio.split(" ").length,
-    wallet: data.wallet
+    favs: [favs, calcArea(favs)],
+    badges: [badges, calcArea(badges)],
+    bio: [bio, calcArea(bio)],
+    wallet: data.wallet,
+    name: data.name
   };
 };
 
@@ -49,20 +60,15 @@ class App extends Component {
   render() {
     return (
       <Main>
-        <H1>PixelsArt</H1>
-        <form onSubmit={this.handleSubmit}>
-          <Label htmlFor="pixelsName">Username</Label>
-          <Input
-            id="pixelsName"
-            type="text"
+        {this.state.data == null ? (
+          <Form
             onChange={this.handleChange}
-            value={this.state.input}
+            onSubmit={this.handleSubmit}
+            error={this.state.error}
           />
-        </form>
-        {this.state.data && (
-          <Pre>{JSON.stringify(this.state.data, null, 2)}</Pre>
+        ) : (
+          <Results data={this.state.data} onResetClick={this.clearResults} />
         )}
-        {this.state.error && <small>User not found</small>}
       </Main>
     );
   }

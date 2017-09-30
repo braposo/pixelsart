@@ -1,7 +1,7 @@
 import React from "react";
 import { Pre, Button, Icon, Span, colours } from "./UI";
 import ChatIcon from "./assets/chat";
-import trophyIcon from "./assets/trophy.svg";
+import TrophyIcon from "./assets/trophy";
 import HeartIcon from "./assets/heart";
 
 function shuffleArray(array) {
@@ -13,11 +13,7 @@ function shuffleArray(array) {
 }
 
 const Fav = <HeartIcon size={48} color={colours.red} />;
-const Badges = (
-  <Span css={{ color: colours.yellow }}>
-    <Icon src={trophyIcon} alt={"Badges icon"} />
-  </Span>
-);
+const Badges = <TrophyIcon size={48} color={colours.yellow} />;
 const Bio = <ChatIcon size={48} color={colours.blue} />;
 
 const getIconComponent = icon => {
