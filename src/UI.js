@@ -9,7 +9,7 @@ export const colours = {
   blue: "#01A7EE"
 };
 export const H1 = glamorous.h1({
-  marginTop: scale[5],
+  marginTop: 0,
   marginBottom: scale[6],
   fontSize: 80
 });
