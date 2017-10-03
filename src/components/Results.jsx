@@ -84,7 +84,7 @@ const Results = ({ data, onResetClick }) => {
       <Div css={{ maxWidth: 600, margin: "0 auto", paddingTop: 150 }}>
         {printChars.map((char, i) => getIconComponent(char, i))}
       </Div>
-      <A href="https://wallet.pixels.camp/?to=0x944b8423331d5fb9713095e6a17390c2c6c4a1a7#send-transaction">
+      <A href="https://pixels.camp/projects/50">
         <Div css={{ marginTop: 90 }}>pixelsart</Div>
         <Div css={{ fontSize: 10 }}>2017</Div>
       </A>
