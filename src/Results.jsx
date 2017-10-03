@@ -18,16 +18,20 @@ import Logo from "./assets/logo.svg";
 const Fav = <HeartIcon size={16} color={colours.red} />;
 const Badges = <TrophyIcon size={16} color={colours.yellow} />;
 const Bio = <ChatIcon size={16} color={colours.blue} />;
-const Transactions = <WifiIcon size={16} color={colours.orange} />;
-const Referrals = <SpeakerIcon size={16} color={colours.green} />;
+const TransIn = <WifiIcon size={16} color={colours.green} />;
+const TransOut = <WifiIcon size={16} color={colours.red} />;
+const Referrals = <SpeakerIcon size={16} color={colours.orange} />;
 
 const getIconComponent = (icon, i) => {
   const components = {
     favs: React.cloneElement(Fav, { key: `fav-${i}` }),
     badges: React.cloneElement(Badges, { key: `badges-${i}` }),
     bio: React.cloneElement(Bio, { key: `bio-${i}` }),
-    transactions: React.cloneElement(Transactions, {
-      key: `transactions-${i}`
+    transIn: React.cloneElement(TransIn, {
+      key: `trans-in-${i}`
+    }),
+    transOut: React.cloneElement(TransOut, {
+      key: `trans-out-${i}`
     }),
     referrals: React.cloneElement(Referrals, { key: `referrals-${i}` })
   };
@@ -39,14 +43,16 @@ const Results = ({ data, onResetClick }) => {
   const printFavs = Array(data.favs[1]).fill("favs");
   const printBadges = Array(data.badges[1]).fill("badges");
   const printBio = Array(data.bio[1]).fill("bio");
-  const printTransactions = Array(data.transactions[1]).fill("transactions");
+  const printTransIn = Array(data.transIn[1]).fill("transIn");
+  const printTransOut = Array(data.transOut[1]).fill("transOut");
   const printReferrals = Array(data.referrals[1]).fill("referrals");
   const printChars = [
-    ...printFavs,
-    ...printBadges,
     ...printBio,
-    ...printTransactions,
-    ...printReferrals
+    ...printFavs,
+    ...printReferrals,
+    ...printBadges,
+    ...printTransIn,
+    ...printTransOut
   ];
   printChars.splice(1480);
 
