@@ -1,5 +1,5 @@
 import React from "react";
-import { Span } from "../UI";
+import { Span } from "components/UI";
 
 const chat = ({ size, color }) => (
   <Span css={{ color }}>

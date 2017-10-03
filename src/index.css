@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Pixels";
-  src: url("./fonts/avant_pixel.woff2") format("woff2"),
-    url("./fonts/avant_pixel.woff") format("woff");
+  src: url("./assets/fonts/avant_pixel.woff2") format("woff2"),
+    url("./assets/fonts/avant_pixel.woff") format("woff");
 }
 
 body {

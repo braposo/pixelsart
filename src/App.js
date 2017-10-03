@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Main, Div } from "./UI";
-import Form from "./Form";
-import Results from "./Results";
-import DataFile from "./data/api_data.json";
+import { Main, Div } from "components/UI";
+import Form from "components/Form";
+import Results from "components/Results";
+import DataFile from "data/api_data.json";
 
 const processStats = (stats, data) => {
   const favs = data.favs.length;

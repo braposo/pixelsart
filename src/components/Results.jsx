@@ -1,11 +1,11 @@
 import React from "react";
-import { colours, Div, scale, Icon, A } from "./UI";
-import ChatIcon from "./assets/chat";
-import TrophyIcon from "./assets/trophy";
-import HeartIcon from "./assets/heart";
-import WifiIcon from "./assets/wifi";
-import SpeakerIcon from "./assets/speaker";
-import Logo from "./assets/logo.svg";
+import { colours, Div, scale, Icon, A } from "components/UI";
+import ChatIcon from "assets/icons/chat";
+import TrophyIcon from "assets/icons/trophy";
+import HeartIcon from "assets/icons/heart";
+import WifiIcon from "assets/icons/wifi";
+import SpeakerIcon from "assets/icons/speaker";
+import Logo from "assets/logo.svg";
 
 // function shuffleArray(array) {
 //   for (var i = array.length - 1; i > 0; i--) {

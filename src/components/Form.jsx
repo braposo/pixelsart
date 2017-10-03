@@ -1,5 +1,5 @@
 import React from "react";
-import { H1, Label, Input, Button, Div, scale, colours } from "./UI";
+import { H1, Label, Input, Button, Div, scale, colours } from "components/UI";
 
 const Form = ({ printing, onSubmit, onChange, error, input }) => {
   return (
