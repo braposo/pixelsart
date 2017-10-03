@@ -46,9 +46,15 @@ export const Button = glamorous.button({
   border: "none",
   padding: scale[1],
   background: colours.yellow,
+  color: colours.red,
   fontFamily: `"Pixels", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
   Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif`,
-  fontSize: 16
+  fontSize: 16,
+  cursor: "pointer",
+  ":hover": {
+    background: colours.red,
+    color: colours.yellow
+  }
 });
 export const Icon = glamorous.img({
   width: 128
