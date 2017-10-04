@@ -47,8 +47,8 @@ const Results = ({ data, onResetClick }) => {
   const printTransOut = Array(data.transOut[1]).fill("transOut");
   const printReferrals = Array(data.referrals[1]).fill("referrals");
   const printChars = [
-    ...printBio,
     ...printFavs,
+    ...printBio,
     ...printReferrals,
     ...printBadges,
     ...printTransIn,
