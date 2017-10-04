@@ -1,6 +1,8 @@
 import DataFile from "data/api_data.json";
 
 export const ICON_COUNT = 1120;
+export const COLUMNS = 28;
+export const ICON_SIZE = 16;
 export const processStats = (stats, data) => {
   const favs = data.favs.length;
   const badges = data.badges["2017"].length;

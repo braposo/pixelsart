@@ -6,7 +6,7 @@ import HeartIcon from "assets/icons/heart";
 import WifiIcon from "assets/icons/wifi";
 import SpeakerIcon from "assets/icons/speaker";
 import Logo from "assets/logo.svg";
-import { ICON_COUNT } from "utils";
+import { ICON_COUNT, COLUMNS, ICON_SIZE } from "utils";
 
 // function shuffleArray(array) {
 //   for (var i = array.length - 1; i > 0; i--) {
@@ -16,12 +16,12 @@ import { ICON_COUNT } from "utils";
 //   return array;
 // }
 
-const Fav = <HeartIcon size={16} color={colours.red} />;
-const Badges = <TrophyIcon size={16} color={colours.yellow} />;
-const Bio = <ChatIcon size={16} color={colours.blue} />;
-const TransIn = <WifiIcon size={16} color={colours.green} />;
-const TransOut = <WifiIcon size={16} color={colours.red} />;
-const Referrals = <SpeakerIcon size={16} color={colours.orange} />;
+const Fav = <HeartIcon size={ICON_SIZE} color={colours.red} />;
+const Badges = <TrophyIcon size={ICON_SIZE} color={colours.yellow} />;
+const Bio = <ChatIcon size={ICON_SIZE} color={colours.blue} />;
+const TransIn = <WifiIcon size={ICON_SIZE} color={colours.green} />;
+const TransOut = <WifiIcon size={ICON_SIZE} color={colours.red} />;
+const Referrals = <SpeakerIcon size={ICON_SIZE} color={colours.orange} />;
 
 const getIconComponent = (icon, i) => {
   const components = {
@@ -34,7 +34,7 @@ const getIconComponent = (icon, i) => {
     transOut: React.cloneElement(TransOut, {
       key: `trans-out-${i}`
     }),
-    referrals: React.cloneElement(Referrals, { key: `referrals-${i}` })
+    referrals: React.cloneElement(Referrals, { key: `referrals-${i}` }),
   };
 
   return components[icon];
@@ -86,7 +86,14 @@ const Results = ({ data, onResetClick }) => {
           />
         </A>
       </Div>
-      <Div css={{ maxWidth: 16 * 28, margin: "0 auto", paddingTop: 150 }}>
+      <Div
+        css={{
+          maxWidth: ICON_SIZE * COLUMNS,
+          margin: "0 auto",
+          paddingTop: 150,
+          textAlign: "left"
+        }}
+      >
         {printChars.map((char, i) => getIconComponent(char, i))}
       </Div>
       <A href="https://pixels.camp/projects/50">
