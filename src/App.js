@@ -30,6 +30,7 @@ const processData = data => {
   const stats = DataFile[data.wallet.toLowerCase()] || {};
 
   return {
+    username: data.github_user,
     wallet: data.wallet,
     name: data.name,
     avatar: data.avatar_url,
@@ -65,9 +66,20 @@ class App extends Component {
   componentDidMount() {
     const path = window.location.pathname.substr(1);
     if (path.length > 0) {
-      this.setState({ printing: true, path });
       this.fetchData(path);
     }
+
+    window.addEventListener("popstate", () => {
+      const path = window.location.pathname.substr(1);
+      this.clearResults();
+      if (path.length > 0) {
+        this.fetchData(path);
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("popstate");
   }
 
   handleChange = ev => {
@@ -76,6 +88,7 @@ class App extends Component {
 
   storeData = data => {
     this.setState({ data, printing: false });
+    document.title = `PixelsArt by ${data.username} - Pixels Camp 2017`;
   };
 
   handleError = error => {
@@ -92,13 +105,14 @@ class App extends Component {
   handleSubmit = ev => {
     ev.preventDefault();
     this.clearResults();
-    this.setState({ printing: true });
+
     window.history.pushState(null, null, this.state.input);
 
     this.fetchData(this.state.input);
   };
 
   fetchData = path => {
+    this.setState({ printing: true, path });
     fetch(`https://api.pixels.camp/users/${path}`)
       .then(resp => resp.json())
       .then(processData)

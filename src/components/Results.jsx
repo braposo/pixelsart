@@ -59,7 +59,9 @@ const Results = ({ data, onResetClick }) => {
   return (
     <Div css={{ position: "relative", margin: scale[4] }}>
       <Div css={{ position: "absolute", top: 0, left: 0 }}>
-        <Icon src={Logo} alt="Pixels Camp logo" />
+        <A href="/">
+          <Icon src={Logo} alt="Pixels Camp logo" />
+        </A>
       </Div>
       <Div
         css={{
@@ -69,17 +71,19 @@ const Results = ({ data, onResetClick }) => {
           textTransform: "uppercase"
         }}
       >
-        {data.name}{" "}
-        <Icon
-          src={data.avatar}
-          alt="avatar"
-          css={{
-            width: 14,
-            height: 14,
-            display: "inline-block",
-            verticalAlign: "top"
-          }}
-        />
+        <A href={`https://pixels.camp/${data.username}`}>
+          {data.name}{" "}
+          <Icon
+            src={data.avatar}
+            alt="avatar"
+            css={{
+              width: 14,
+              height: 14,
+              display: "inline-block",
+              verticalAlign: "top"
+            }}
+          />
+        </A>
       </Div>
       <Div css={{ maxWidth: 600, margin: "0 auto", paddingTop: 150 }}>
         {printChars.map((char, i) => getIconComponent(char, i))}
