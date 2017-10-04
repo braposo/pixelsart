@@ -69,22 +69,24 @@ class App extends Component {
       this.fetchData(path);
     }
 
-    window.addEventListener("popstate", () => {
-      const path = window.location.pathname.substr(1);
-      this.clearResults();
-      if (path.length > 0) {
-        this.fetchData(path);
-      }
-    });
+    window.addEventListener("popstate", this.handlePopState);
   }
 
   componentWillUnmount() {
-    window.removeEventListener("popstate");
+    window.removeEventListener("popstate", this.handlePopState);
   }
 
   handleChange = ev => {
     this.setState({ input: ev.target.value });
   };
+
+  handlePopState() {
+    const path = window.location.pathname.substr(1);
+    this.clearResults();
+    if (path.length > 0) {
+      this.fetchData(path);
+    }
+  }
 
   storeData = data => {
     this.setState({ data, printing: false });
