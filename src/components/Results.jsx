@@ -6,6 +6,7 @@ import HeartIcon from "assets/icons/heart";
 import WifiIcon from "assets/icons/wifi";
 import SpeakerIcon from "assets/icons/speaker";
 import Logo from "assets/logo.svg";
+import { ICON_COUNT } from "utils";
 
 // function shuffleArray(array) {
 //   for (var i = array.length - 1; i > 0; i--) {
@@ -54,7 +55,7 @@ const Results = ({ data, onResetClick }) => {
     ...printTransIn,
     ...printTransOut
   ];
-  printChars.splice(1480);
+  printChars.splice(ICON_COUNT);
 
   return (
     <Div css={{ position: "relative", margin: scale[4] }}>
@@ -85,7 +86,7 @@ const Results = ({ data, onResetClick }) => {
           />
         </A>
       </Div>
-      <Div css={{ maxWidth: 600, margin: "0 auto", paddingTop: 150 }}>
+      <Div css={{ maxWidth: 16 * 28, margin: "0 auto", paddingTop: 150 }}>
         {printChars.map((char, i) => getIconComponent(char, i))}
       </Div>
       <A href="https://pixels.camp/projects/50">
