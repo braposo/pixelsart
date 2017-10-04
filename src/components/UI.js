@@ -61,4 +61,11 @@ export const Icon = glamorous.img({
 });
 export const Span = glamorous.span();
 export const Div = glamorous.div();
+export const Ul = glamorous.ul({
+  margin: 0,
+  padding: 0,
+  listStyleType: "none",
+  textAlign: "left"
+});
+export const Li = glamorous.li();
 export const A = glamorous.a({ color: "black", textDecoration: "none" });
