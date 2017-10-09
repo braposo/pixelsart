@@ -3,7 +3,7 @@ import DataFile from "data/api_data.json";
 export const ICON_COUNT = 1120;
 export const COLUMNS = 28;
 export const ICON_SIZE = 16;
-export const processStats = (stats, data) => {
+export const processStats = (stats = {}, data) => {
   const favs = data.favs.length;
   const badges = data.badges["2017"].length;
   const bio = data.bio.split(" ").length;
@@ -23,7 +23,7 @@ export const processStats = (stats, data) => {
   };
 };
 export const processData = data => {
-  const stats = DataFile[data.wallet.toLowerCase()] || {};
+  const stats = data.wallet == null ? {} : DataFile[data.wallet.toLowerCase()];
 
   return {
     username: data.github_user,
